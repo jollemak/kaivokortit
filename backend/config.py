@@ -1,12 +1,16 @@
 import os
 from dotenv import load_dotenv
 
-def __require(name, value):
-    if not value:
+load_dotenv()
+
+def _require(name):
+    value = os.getenv("MISTRAL_KEY")
+    if not name:
         raise RuntimeError(f"{name} not found")
     return value
 
-load_dotenv()
+MISTRAL_KEY = _require("MISTRAL_KEY")
 
-MISTRAL_KEY = __require("MISTRAL_KEY", os.getenv("MISTRAL_KEY"))
+AZURE_STORAGE_CONNECTION_STRING=_require("AZURE_STORAGE_CONNECTION_STRING")
+AZURE_STORAGE_KEY=_require("AZURE_STORAGE_KEY")
 
